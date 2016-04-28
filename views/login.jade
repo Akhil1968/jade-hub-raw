@@ -1,13 +1,8 @@
 html
  head
-  include partials/includeHead.jade
-
  body
-    block content
-      .container
-        form.form-signin(action="/toLanding", method="GET")
-          h2.form-signin-heading Please sign in
-          input.input-block-level(type="text", name="nm", placeholder="User Name")
-          input.input-block-level(type="password", name="password", placeholder="Password")
-          button.btn.btn-large.btn-primary(type="submit") Sign in
+  form(action="/toLanding", method="GET")
+          h2 Please sign in
+          input(type="text", name="nm", placeholder="User Name")
+          button(type="submit") Sign in
 

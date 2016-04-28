@@ -1,15 +1,14 @@
 html
  head
-  include partials/includeHead.jade
  body
   include partials/includeMenu.jade
   br
-  .jumbotron
-   p.help-block.text-left
-      medium #{person}, Here you are in the city of #{cityName} : 
-      img.img-circle(src='/images/#{cityName}.jpg', alt='city image', width='50', height='50')
+  
+  p
+      medium Here you are in the city of #{cityName} : 
+      img(src='/images/#{cityName}.jpg', alt='city image', width='50', height='50')
       small  : #{tagline}
-      img.img-responsive(src='/images/#{cityName}.jpg', alt='city image', width='304', height='236')
+      img(src='/images/#{cityName}.jpg', alt='city image', width='304', height='236')
 
-   h3 #{tagline}
-   h3= tagline
+  h3 #{tagline}
+  h3= tagline

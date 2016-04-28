@@ -1,13 +1,16 @@
 
-exports.loginPageHandler = function(req, res){
-	req.session.destroy();
-	console.log("Login Page");
+exports.loginHandler = function(req, res){
 	res.render('login.jade', {});
-}
+}////loginHandler
 
-exports.landingPageHandler = function(req, res){
+exports.logoutHandler = function(req, res){
+	req.session.destroy();
+	res.render('login.jade', {LOGGEDIN:false});
+}//logoutHandler
+
+exports.landingHandler = function(req, res){
 	console.log("processing GET request for landing page. Req Param  " + req.query.nm);
-
+	req.session.loggedin = true;
 	var person;
 	if (req.session.userName){   //session store has userName
 		console.log("User Name already in session. It is " + req.session.userName);
@@ -19,10 +22,11 @@ exports.landingPageHandler = function(req, res){
 		console.log("User Name does not exist in session. Hence storing it in session store " + person);
 	}
 
-	res.render('landingpage.jade', {welcomeMessage:person});
-}
+	res.render('landingpage.jade', {welcomeMessage:person, 
+									LOGGEDIN:req.session.loggedin});
+}//landingHandler
 
-exports.cityPageHandler = function(req, res){
+exports.cityHandler = function(req, res){
 	var interestValue = req.body.interest;
 	var cityNameValue, taglineValue;
 	console.log("received interestValue  as " + interestValue);
@@ -40,5 +44,7 @@ exports.cityPageHandler = function(req, res){
 	}
 	
 	res.render('city.jade', {cityName:cityNameValue, 
-						tagline: taglineValue, person:req.session.userName});
-}
+							tagline: taglineValue,
+							welcomeMessage:req.session.userName,
+							LOGGEDIN:req.session.loggedin});
+}//cityHandler

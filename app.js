@@ -20,9 +20,10 @@ app.use(session({secret: "secret",  resave : true,  saveUninitialized : false}))
  
 app.set('view engine', 'jade');
 
-app.get('/', routes.loginPageHandler);
-app.get('/toLanding', routes.landingPageHandler);
-app.post('/toCity', routes.cityPageHandler);
+app.get('/', routes.loginHandler);
+app.get('/logout', routes.logoutHandler);
+app.get('/toLanding', routes.landingHandler);
+app.post('/toCity', routes.cityHandler);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
